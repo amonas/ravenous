@@ -41,7 +41,7 @@ handleLocationChange(event) {
 }
 
 handleSearch(event) {
-  this.props.searchYelp(this.term, this.location, this.sortBy);
+  this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
   event.preventDefault();
 }
 

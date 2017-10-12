@@ -10,12 +10,13 @@ const Yelp = {
     } return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/oauth2/token?grant_type=client_credentials&client_id=${clientId}&client_secret=${secret}`,
       {method: 'POST'}
     ).then(response => response.json()).then(jsonResponse => {
-      accessToken = jsonResponse.access_token});
+      return accessToken = jsonResponse.access_token});
+      return accessToken;
   },
 
   search(term, location, sortBy) {
     return Yelp.getAccessToken().then(()=>
-     fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
+    {return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`,
       {headers: {'Authorization': `Bearer ${accessToken}`}}
     ).then(response => response.json()).then(jsonResponse => {
       if (jsonResponse.businesses){
@@ -33,8 +34,8 @@ const Yelp = {
         }})
       }
     })
-  );
-  }
+  });
+}
 }
 
 
